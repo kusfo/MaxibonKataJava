@@ -3,6 +3,7 @@ package com.karumi.maxibonkata;
 import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertTrue;
@@ -12,7 +13,7 @@ import static org.junit.Assert.assertTrue;
  * Created by JordiM on 25/03/2017.
  */
 @RunWith(JUnitQuickcheck.class)
-public class DeveloperProerties {
+public class DeveloperProperties {
 
     private static String ANY_NAME = "Pedro";
     private static int ANY_NUMBER_OF_MAXIBONS = 1;
@@ -24,4 +25,12 @@ public class DeveloperProerties {
         System.out.println(developer);
         assertTrue(developer.getNumberOfMaxibonsToGrab() >= 0);
     }
+
+    /*@Test
+    public void theNumberOfMaxibonsRequiredByDeveloperIsTheExpected() throws Exception {
+        KarumiesGenerator karumiesGenerator = new KarumiesGenerator();
+
+        karumiesGenerator.generate();
+
+    }*/
 }
