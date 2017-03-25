@@ -18,16 +18,25 @@ import static org.junit.Assert.assertTrue;
 public class KarumiHQProperties {
 
     private Chat chat;
+    private KarumiHQs karumiHQs;
 
     @Before
     public void setUp() throws Exception {
         chat = new ConsoleChat();
+        karumiHQs = new KarumiHQs(chat);
     }
 
     @Property
-    public void theNumberOfMaxibonsInFridgeIsAlwaysAtLeastTwo(
+    public void theNumberOfMaxibonsInFridgeIsAlwaysAtLeastTwoWhenDeveloperCameAlone(
+        @From(DevelopersGenerator.class) Developer developer) {
+        karumiHQs.openFridge(developer);
+
+        assertTrue(karumiHQs.getMaxibonsLeft() >= 2);
+    }
+
+    @Property
+    public void theNumberOfMaxibonsInFridgeIsAlwaysAtLeastTwoWhenDeveloperCameInGroup(
             List<@From(DevelopersGenerator.class) Developer>  developerList) {
-        KarumiHQs karumiHQs = new KarumiHQs(chat);
 
         karumiHQs.openFridge(developerList);
 
