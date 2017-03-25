@@ -1,6 +1,5 @@
 package com.karumi.maxibonkata;
 
-import com.pholser.junit.quickcheck.ForAll;
 import com.pholser.junit.quickcheck.From;
 import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
@@ -26,7 +25,8 @@ public class KarumiHQProperties {
     }
 
     @Property
-    public void theNumberOfMaxibonsInFridgeIsAlwaysAtLeastTwo(List<@From(DevelopersGenerator.class) Developer>  developerList) {
+    public void theNumberOfMaxibonsInFridgeIsAlwaysAtLeastTwo(
+            List<@From(DevelopersGenerator.class) Developer>  developerList) {
         KarumiHQs karumiHQs = new KarumiHQs(chat);
 
         karumiHQs.openFridge(developerList);
