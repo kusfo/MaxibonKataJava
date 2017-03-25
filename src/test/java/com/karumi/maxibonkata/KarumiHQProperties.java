@@ -10,6 +10,10 @@ import org.junit.runner.RunWith;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 
 /**
  * Created by JordiM on 25/03/2017.
@@ -22,7 +26,7 @@ public class KarumiHQProperties {
 
     @Before
     public void setUp() throws Exception {
-        chat = new ConsoleChat();
+        chat = mock(ConsoleChat.class);
         karumiHQs = new KarumiHQs(chat);
     }
 
@@ -41,5 +45,23 @@ public class KarumiHQProperties {
         karumiHQs.openFridge(developerList);
 
         assertTrue(karumiHQs.getMaxibonsLeft() >= 2);
+    }
+
+    @Property
+    public void givenHungryDevelopersWhenOpenFridgeThenChatMessageSend(
+            @From(HungryDevelopersGenerator.class) Developer  developer) {
+
+        karumiHQs.openFridge(developer);
+
+        verify(chat).sendMessage("Hi guys, I'm " + developer.getName() + ". We need more maxibons!");
+    }
+
+    @Property
+    public void givenNotSoHungryDevelopersWhenOpenFridgeThenChatMessageNotSend(
+            @From(NotSoHungryDevelopersGenerator.class) Developer  developer) {
+
+        karumiHQs.openFridge(developer);
+
+        verify(chat, never()).sendMessage(any());
     }
 }
