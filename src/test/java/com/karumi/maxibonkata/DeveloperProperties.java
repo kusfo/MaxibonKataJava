@@ -6,6 +6,7 @@ import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
@@ -26,11 +27,13 @@ public class DeveloperProperties {
         assertTrue(developer.getNumberOfMaxibonsToGrab() >= 0);
     }
 
-    /*@Test
+    @Test
     public void theNumberOfMaxibonsRequiredByDeveloperIsTheExpected() throws Exception {
-        KarumiesGenerator karumiesGenerator = new KarumiesGenerator();
+        assertEquals(3, Karumies.PEDRO.getNumberOfMaxibonsToGrab());
+        assertEquals(0, Karumies.DAVIDE.getNumberOfMaxibonsToGrab());
+        assertEquals(1, Karumies.ALBERTO.getNumberOfMaxibonsToGrab());
+        assertEquals(2, Karumies.SERGIO.getNumberOfMaxibonsToGrab());
+        assertEquals(1, Karumies.JORGE.getNumberOfMaxibonsToGrab());
 
-        karumiesGenerator.generate();
-
-    }*/
+    }
 }
